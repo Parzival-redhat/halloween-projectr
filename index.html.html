@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Halloween Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <audio id="spookySound" src="zapsplat_horror_ghost_evp_eerie_breathing_fearful_into_phrase_processed_58820.mp3" preload="auto"></audio>
+
+    <div class="background" id="backgroundContainer">
+        <div class="login-container fade-in" id="loginContainer">
+            <h2>Enter the Haunted House</h2>
+            <form id="loginForm">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+                
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div id="messageContainer" style="display: none;">
+            <h1 style="color: chocolate; font-style: italic;">yolooo pookiee, my spooky babyy!</h1>
+            <h2 style="color: darkgoldenrod; font-style: oblique;">You’ve entered the haunted zone!</h2>
+            <p style="color: darkgray; font-style: italic; white-space: pre-line;">
+                Tonight is filled with chills and thrills,  
+                but my heart feels nothing but warmth knowing you're here.  
+                One day we’ll celebrate all our special days together,  
+                but for now, know you're my precious pumpkin lighting my way.  
+            </p>
+            <h4 style="color: rgb(255, 0, 51);">Love you to the moon and back,  
+                my enchanting spirit!</h4>
+        </div>
+
+        <!-- Play Music Button -->
+        <button id="playMusicButton" style="font-size: 1.2em; padding: 12px 24px;">Play Spooky Music</button>
+    </div>
+
+    <script>
+        const spookySound = document.getElementById("spookySound");
+        const playMusicButton = document.getElementById("playMusicButton");
+
+        playMusicButton.addEventListener("click", () => {
+            spookySound.play().then(() => {
+                spookySound.loop = true;
+                spookySound.volume = 0.5;
+            }).catch(error => {
+                console.error("Audio playback failed:", error);
+            });
+            playMusicButton.style.display = "none"; // Hide button after playing
+        });
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            if (username === "pringlusisoo" && password === "2662023") {
+                const messageContainer = document.getElementById("messageContainer");
+                messageContainer.style.display = "block";
+                document.getElementById("loginContainer").style.display = "none"; 
+                document.getElementById("backgroundContainer").style.backgroundImage = "url('https://wallpaperaccess.com/full/1148748.jpg')";
+                document.getElementById("backgroundContainer").style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+            } else {
+                const loginContainer = document.getElementById("loginContainer");
+                loginContainer.classList.add("shake");
+                setTimeout(() => loginContainer.classList.remove("shake"), 500);
+            }
+        });
+    </script>
+</body>
+</html>
